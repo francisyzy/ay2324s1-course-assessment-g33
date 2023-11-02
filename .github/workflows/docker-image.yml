@@ -16,6 +16,8 @@ jobs:
     - uses: actions/checkout@v3
     - name: CD to as5-backend
       run: cd assignments/assignment_5/backend/
+    - name: LS
+      run: ls
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag as5-backend:$(date +%s)
     - name: CD to as5-frontend
