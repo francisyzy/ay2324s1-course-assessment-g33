@@ -29,8 +29,8 @@ jobs:
       id: build-image
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        ECR_REPOSITORY: as5
-        IMAGE_TAG: "test-tag"
+        ECR_REPOSITORY: public.ecr.aws/a6n0p1z7/as5
+        IMAGE_TAG: "test-tag2"
       run: |
         cd assignments/assignment_5/backend/
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
