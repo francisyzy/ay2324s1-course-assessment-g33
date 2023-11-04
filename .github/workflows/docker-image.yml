@@ -1,4 +1,4 @@
-name: Docker Image CI
+name: Docker ECR
 
 on:
   push:
@@ -7,16 +7,22 @@ on:
     branches: [ "master", "cicd" ]
 
 jobs:
+
   build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
     - name: upload image to ECR
       uses: appleboy/docker-ecr-action@master
       with:
         access_key: ${{ secrets.aws_access_key_id }}
         secret_key: ${{ secrets.aws_secret_access_key }}
         registry: ${{ secrets.registry }}
+        # cache_from: ${{ secrets.cache }}
         repo: as5
         region: ap-southeast-1
         auto_tag: true
         daemon_off: false
         dockerfile: assignments/assignment_5/backend/Dockerfile
-        context: assignments/assignment_5/backend/
+        context: assignments/assignment_5/backend
