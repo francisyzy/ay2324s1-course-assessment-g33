@@ -9,22 +9,13 @@ on:
 jobs:
 
   build:
-
     runs-on: ubuntu-latest
-
-    # steps:
-    # - uses: actions/checkout@v3
-    # - name: Build the Docker image backend
-    #   run: cd assignments/assignment_5/backend/ && ls && docker build . --file Dockerfile --tag as5-backend:$(date +%s)
-    # - name: Build the Docker image frontend
-    #   run: cd assignments/assignment_5/frontend/ && ls && docker build . --file Dockerfile --tag as5-frontend:$(date +%s)
     - name: upload image to ECR
       uses: appleboy/docker-ecr-action@master
       with:
         access_key: ${{ secrets.aws_access_key_id }}
         secret_key: ${{ secrets.aws_secret_access_key }}
         registry: ${{ secrets.registry }}
-        # cache_from: ${{ secrets.cache }}
         repo: as5
         region: ap-southeast-1
         auto_tag: true
