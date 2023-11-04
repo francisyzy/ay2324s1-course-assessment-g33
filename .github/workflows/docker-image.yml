@@ -7,9 +7,7 @@ on:
     branches: [ "master", "cicd" ]
 
 jobs:
-
   build:
-    runs-on: ubuntu-latest
     - name: upload image to ECR
       uses: appleboy/docker-ecr-action@master
       with:
