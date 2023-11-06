@@ -40,10 +40,10 @@ jobs:
       run: |
         cd assignments/assignment_5/backend/
         docker build -tag $ECR_REGISTRY/$ECR_REPOSITORY-backend:$(date +%s) . --file Dockerfile
+        docker push --all-tags $ECR_REGISTRY/$ECR_REPOSITORY-backend
         cd ../frontend/
         docker build -tag $ECR_REGISTRY/$ECR_REPOSITORY-frontend:$(date +%s) . --file Dockerfile
-        cd ../
-        docker push --all-tags $ECR_REGISTRY/$ECR_REPOSITORY
+        docker push --all-tags $ECR_REGISTRY/$ECR_REPOSITORY-frontend
 
     - name: Update kube config
       run: aws eks update-kubeconfig --name as5 --region ap-southeast-1
