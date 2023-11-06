@@ -39,8 +39,8 @@ jobs:
         IMAGE_TAG: ${{ github.sha }}
       run: |
         cd assignments/assignment_5/backend/
-        docker build -tag $ECR_REGISTRY/$(ECR_REPOSITORY)-backend:$(date +%s) . --file Dockerfile
-        docker push --all-tags $ECR_REGISTRY/$(ECR_REPOSITORY)-backend
+        docker build -tag $ECR_REGISTRY/${ECR_REPOSITORY}-backend:$(date +%s) . --file Dockerfile
+        docker push --all-tags $ECR_REGISTRY/${ECR_REPOSITORY}-backend
 
     - name: Frontend Build, tag, and push image to Amazon ECR
       env:
@@ -49,8 +49,8 @@ jobs:
         IMAGE_TAG: ${{ github.sha }}
       run: |
         cd assignments/assignment_5/frontend/
-        docker build -tag $ECR_REGISTRY/$(ECR_REPOSITORY)-frontend:$(date +%s) . --file Dockerfile
-        docker push --all-tags $ECR_REGISTRY/$(ECR_REPOSITORY)-frontend
+        docker build -tag $ECR_REGISTRY/${ECR_REPOSITORY}-frontend:$(date +%s) . --file Dockerfile
+        docker push --all-tags $ECR_REGISTRY/${ECR_REPOSITORY}-frontend
 
     - name: Update kube config
       run: aws eks update-kubeconfig --name as5 --region ap-southeast-1
