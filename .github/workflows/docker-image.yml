@@ -45,11 +45,9 @@ jobs:
     - name: Update kube config
       run: aws eks update-kubeconfig --name as5 --region ap-southeast-1
 
-    # - name: Deploy to EKS
-    #   run: |
-    #     kubectl apply -f fedhr-postgres-deployment.yaml
-    #     kubectl apply -f fedhr-graphene-deployment.yaml
-    #     kubectl apply -f fedhr-ingress.yaml
+    - name: Deploy to EKS
+      run: |
+        kubectl apply -f ./github/as5-deployment.yaml
 
     # - name: Run Tests
     #   run: |
