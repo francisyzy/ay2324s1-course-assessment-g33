@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: as5-frontend
+  labels:
+    app: as5-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: as5-frontend
+  template:
+    metadata:
+      labels:
+        app: as5-frontend
+    spec:
+      containers:
+        - name: as5-frontend
+          image: 585416986583.dkr.ecr.ap-southeast-1.amazonaws.com/as5:latest-frontend
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
