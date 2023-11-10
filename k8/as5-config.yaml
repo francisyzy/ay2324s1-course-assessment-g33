@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: as5-configmap
+  name: as5-config
 data:
   REACT_APP_MATCHMAKING_TIMEOUT: "5000"
   NODE_ENV: "production"
