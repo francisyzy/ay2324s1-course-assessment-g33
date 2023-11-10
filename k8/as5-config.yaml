@@ -6,3 +6,4 @@ data:
   REACT_APP_MATCHMAKING_TIMEOUT: "5000"
   NODE_ENV: "production"
   MATCH_TIMEOUT: "5"
+  REACT_APP_BACKEND_URL: "http://as5-socket-backend:30001"

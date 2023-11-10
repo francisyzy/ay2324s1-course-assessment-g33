@@ -67,8 +67,9 @@ spec:
                 name: as5-secret
                 key: REACT_APP_FIREBASE_MEASUREMENT_ID
           - name: REACT_APP_BACKEND_URL
-            value:
-              key: "http://as5-socket-backend:30001"
+              configMapKeyRef:
+                name: as5-config
+                key: REACT_APP_BACKEND_URL
 ---
 apiVersion: v1
 kind: Service
