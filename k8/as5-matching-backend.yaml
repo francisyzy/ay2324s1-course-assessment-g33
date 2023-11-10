@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: as5-matching-backend
-          image: 585416986583.dkr.ecr.ap-southeast-1.amazonaws.com/as5:latest-backend
+          image: public.ecr.aws/a6n0p1z7/as5:latest-backend
           imagePullPolicy: Always
           ports:
             - containerPort: 30002

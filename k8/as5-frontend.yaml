@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: as5-frontend
-          image: 585416986583.dkr.ecr.ap-southeast-1.amazonaws.com/as5:latest-frontend
+          image: public.ecr.aws/a6n0p1z7/as5:latest-frontend
           imagePullPolicy: Always
           ports:
             - containerPort: 3000
