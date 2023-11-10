@@ -1,1 +1,2 @@
 export const MATCHMAKING_TIMEOUT = process.env.REACT_APP_MATCHMAKING_TIMEOUT;
+export const SOCKET_URL = process.env.REACT_APP_BACKEND_URL;

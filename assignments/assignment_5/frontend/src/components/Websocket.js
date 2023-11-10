@@ -1,8 +1,9 @@
 import { useContext, useEffect, useState } from "react";
 import { io } from "socket.io-client";
 import { MatchContext } from "../contexts/MatchContext";
+import { SOCKET_URL } from "../utils/constants";
 
-const URL = window.location.hostname + ":3001"
+const URL = SOCKET_URL // window.location.hostname + ":3001"
 
 export const socket = io(URL, {
 	autoConnect: false,
