@@ -18,6 +18,8 @@ spec:
         - name: as5-matching-backend
           image: 585416986583.dkr.ecr.ap-southeast-1.amazonaws.com/as5:latest-backend
           imagePullPolicy: Always
+          ports:
+            - containerPort: 30002
 ---
 apiVersion: v1
 kind: Service
@@ -26,4 +28,8 @@ metadata:
 spec:
   selector:
     app: as5-matching-backend
+  ports:
+    - protocol: TCP
+      port: 30002
+      targetPort: 30002
   type: LoadBalancer
