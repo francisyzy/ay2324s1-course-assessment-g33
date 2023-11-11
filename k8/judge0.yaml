@@ -1,0 +1,158 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: judge0-db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: judge0-db
+  template:
+    metadata:
+      labels:
+        app: judge0-db
+    spec:
+      containers:
+        - name: judge0-db
+          image: postgres:13.0
+          # envFrom:
+          #   - configMapRef:
+          #       name: judge0-config
+          volumeMounts:
+            - name: postgres-data
+              mountPath: /var/lib/postgresql/data
+      volumes:
+        - name: postgres-data
+          persistentVolumeClaim:
+            claimName: postgres-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: judge0-db-service
+spec:
+  selector:
+    app: judge0-db
+  ports:
+    - protocol: TCP
+      port: 5432
+      targetPort: 5432
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: judge0-redis
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: judge0-redis
+  template:
+    metadata:
+      labels:
+        app: judge0-redis
+    spec:
+      containers:
+        - name: judge0-redis
+          image: redis:6.0
+          command: ["bash", "-c", 'docker-entrypoint.sh --appendonly yes --requirepass "$REDIS_PASSWORD"']
+          envFrom:
+            - configMapRef:
+                name: judge0-config
+          volumeMounts:
+            - name: redis-data
+              mountPath: /data
+      volumes:
+        - name: redis-data
+          persistentVolumeClaim:
+            claimName: redis-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: judge0-redis-service
+spec:
+  selector:
+    app: judge0-redis
+  ports:
+    - protocol: TCP
+      port: 6379
+      targetPort: 6379
+# ---
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: judge0-service
+# spec:
+#   replicas: 1
+#   selector:
+#     matchLabels:
+#       app: judge0-service
+#   template:
+#     metadata:
+#       labels:
+#         app: judge0-service
+#     spec:
+#       containers:
+#         - name: judge0-service
+#           image: judge0/judge0:1.13.0
+#           volumeMounts:
+#             - name: judge0-conf
+#               mountPath: /judge0.conf
+#               readOnly: true
+#           ports:
+#             - containerPort: 2358
+#           securityContext:
+#             privileged: true
+#           # env:
+#           #   - name: LOGGING_ENV_VAR
+#           #     value: "your-logging-value"
+#       volumes:
+#         - name: judge0-conf
+#           hostPath:
+#             path: /path/to/your/judge0.conf
+# ---
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: judge0-service
+# spec:
+#   selector:
+#     app: judge0-service
+#   ports:
+#     - protocol: TCP
+#       port: 80
+#       targetPort: 2358
+# ---
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: workers
+# spec:
+#   replicas: 1
+#   selector:
+#     matchLabels:
+#       app: workers
+#   template:
+#     metadata:
+#       labels:
+#         app: workers
+#     spec:
+#       containers:
+#         - name: workers
+#           image: judge0/judge0:1.13.0
+#           command: ["./scripts/workers"]
+#           volumeMounts:
+#             - name: judge0-conf
+#               mountPath: /judge0.conf
+#               readOnly: true
+#           securityContext:
+#             privileged: true
+#           # env:
+#           #   - name: LOGGING_ENV_VAR
+#           #     value: "your-logging-value"
+#       volumes:
+#         - name: judge0-conf
+#           hostPath:
+#             path: /path/to/your/judge0.conf
+# ---
