@@ -8,7 +8,7 @@ import {
   Form,
   Alert,
 } from "react-bootstrap";
-import { useAuth } from "../../contexts/AuthContext";
+import { useAuth } from "../../../contexts/AuthContext";
 import { Link } from "react-router-dom";
 
 import Axios from "axios";
@@ -33,14 +33,20 @@ export default function UpdateProfile() {
     Axios.post("http://localhost:3001/update", { user })
       .then((res) => {
         setLoading(true);
+        setMessage("Profile changes updated successfully!");
+        setLoading(false);
+
       })
       .catch((err) => {
-        setError("Error occurred, try again later!");
-        return;
+        if (err?.response?.data.startsWith("ER_DUP_ENTRY")) {
+          setError("Your username has been taken, please come up with a different one!");
+        }
+        else {
+          setError("Error occurred, try again later!");
+        }
       });
-    if (error === "") {
-      setMessage("Changes updated successfully!");
-    }
+    setError("");
+    setMessage("");
   };
 
   return (

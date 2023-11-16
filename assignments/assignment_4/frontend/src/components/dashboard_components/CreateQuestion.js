@@ -40,6 +40,7 @@ export default function CreateQuestion({
     while (i < questions.length) {
       if (questions[i].id === currQuestion.id) {
         newErrors.push("Duplicate question ID, please enter another");
+        break;
       }
       if (questions[i].title === currQuestion.title) {
         newErrors.push("Duplicate title, please enter another");

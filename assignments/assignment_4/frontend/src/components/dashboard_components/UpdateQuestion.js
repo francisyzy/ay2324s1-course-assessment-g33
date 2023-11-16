@@ -3,6 +3,7 @@ import { Button, Modal, Form, Alert } from "react-bootstrap";
 
 export default function UpdateQuestion({
   question,
+  allQuestions,
   currQuestion,
   onValChange,
   onCategoryValChange,
@@ -37,6 +38,14 @@ export default function UpdateQuestion({
   const handleFormCheck = () => {
     var newErrors = [];
     console.log(currQuestion);
+    let i = 0;
+    while (i < allQuestions.length) {
+      if (allQuestions[i].id === currQuestion.id && allQuestions[i].title !== currQuestion.title) {
+        newErrors.push("Duplicate question ID, please enter another");
+        break;
+      }
+      i++;
+    }
     if (!Number.isInteger(currQuestion.id) || currQuestion.id < 0) {
       newErrors.push("Please enter a valid numerical ID");
     }

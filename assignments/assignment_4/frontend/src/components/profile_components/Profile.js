@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Card, Button, Alert } from "react-bootstrap";
-import { useAuth } from "../../contexts/AuthContext";
+import { useAuth } from "../../../contexts/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
 
 import Axios from "axios";
@@ -41,10 +41,14 @@ export default function Profile() {
         }
       })
       .catch((err) => {
+        if (err?.code === 'ERR_NETWORK') {
+          setError("Error connecting to server!");
+        }
         setError("Error connecting to server!");
         return;
       });
   }
+
 
   function deleteProfileData() {
     const user = {
@@ -54,15 +58,19 @@ export default function Profile() {
     Axios.post("http://localhost:3001/delete", { user })
       .then((res) => {
         setLoading(true);
+        setMessage("User profile details deleted successfully!");
+        setLoading(false);
       })
       .catch((err) => {
-        setError("Delete failed!");
+        if (err?.code === 'ERR_NETWORK') {
+          setError("Error connecting to server, delete failed!");
+        } else {
+          setError("Delete failed!");
+        }
         return;
       });
-    setLoading(false);
-    if (error === "") {
-      setMessage("User profile details deleted successfully!");
-    }
+      setError("");
+      setMessage("");
   }
 
   async function handleLogout() {
