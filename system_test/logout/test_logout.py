@@ -9,7 +9,7 @@ chrome_options.add_argument("--headless")
 
 def test_logout_success():
     driver = webdriver.Chrome(options=chrome_options)
-    driver.get('http://peercode.net/login')
+    driver.get('https://peercode.net/login')
     wait = WebDriverWait(driver, 10) 
 
     email = wait.until(EC.presence_of_element_located((By.XPATH, "//input[@type='email']")))
@@ -20,8 +20,8 @@ def test_logout_success():
     password.send_keys('tester')
     login_button.click()
 
-    WebDriverWait(driver, 10).until(EC.url_to_be('http://peercode.net/dashboard'))
-    assert driver.current_url == 'http://peercode.net/dashboard', "Login failed"
+    WebDriverWait(driver, 10).until(EC.url_to_be('https://peercode.net/dashboard'))
+    assert driver.current_url == 'https://peercode.net/dashboard', "Login failed"
 
     try:
         dropdown_button = wait.until(EC.element_to_be_clickable((By.XPATH, '//button[@aria-label="Open settings"]')))

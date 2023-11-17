@@ -35,15 +35,21 @@ export default function CreateProfile() {
     Axios.post("http://localhost:3001/insert", { user })
       .then((res) => {
         setLoading(true);
+        setMessage("Profile created successfully!");
+        setHasCreated(true);
+        setLoading(false);
       })
       .catch((err) => {
-        setError("Error occurred, try again later!");
+        if (err?.response?.data.startsWith("ER_DUP_ENTRY")) {
+          setError("Your username has been taken, please come up with a different one!");
+        }
+        else {
+          setMessage("")
+          setError("Error occurred, try again later!");
+        }
       });
-    setLoading(false);
-    if (error === "") {
-      setMessage("Profile created successfully!");
-      setHasCreated(true);
-    }
+      setError("");
+      setMessage("");
   }
 
   return (

@@ -9,7 +9,7 @@ chrome_options.add_argument("--headless")
 
 def test_settings_dropdown_success():
     driver = webdriver.Chrome(options=chrome_options)
-    driver.get('http://peercode.net/login')
+    driver.get('https://peercode.net/login')
     wait = WebDriverWait(driver, 10)
     try:
         # Login
@@ -22,8 +22,8 @@ def test_settings_dropdown_success():
         login_button.click()
 
         # Wait for the next page to load after login
-        WebDriverWait(driver, 10).until(EC.url_to_be('http://peercode.net/dashboard'))
-        assert driver.current_url == 'http://peercode.net/dashboard', "Login failed"
+        WebDriverWait(driver, 10).until(EC.url_to_be('https://peercode.net/dashboard'))
+        assert driver.current_url == 'https://peercode.net/dashboard', "Login failed"
 
         # Find the dropdown menu
         dropdown_button = wait.until(EC.element_to_be_clickable((By.XPATH, '//button[@aria-label="Open settings"]')))
@@ -34,7 +34,7 @@ def test_settings_dropdown_success():
 
 def test_settings_profile_success():
     driver = webdriver.Chrome(options=chrome_options)
-    driver.get('http://peercode.net/login')
+    driver.get('https://peercode.net/login')
     wait = WebDriverWait(driver, 10)
     try:
         # Login
@@ -47,8 +47,8 @@ def test_settings_profile_success():
         login_button.click()
 
         # Wait for the next page to load after login
-        WebDriverWait(driver, 10).until(EC.url_to_be('http://peercode.net/dashboard'))
-        assert driver.current_url == 'http://peercode.net/dashboard', "Login failed"
+        WebDriverWait(driver, 10).until(EC.url_to_be('https://peercode.net/dashboard'))
+        assert driver.current_url == 'https://peercode.net/dashboard', "Login failed"
 
         # Find the dropdown menu
         dropdown_button = wait.until(EC.element_to_be_clickable((By.XPATH, '//button[@aria-label="Open settings"]')))
@@ -58,8 +58,8 @@ def test_settings_profile_success():
         profile_item = wait.until(EC.element_to_be_clickable((By.XPATH, '//li[.//p[text()="Profile"]]')))
         profile_item.click()
         
-        WebDriverWait(driver, 10).until(EC.url_to_be('http://peercode.net/profile'))
-        assert driver.current_url == 'http://peercode.net/profile', "Navigation to /profile failed"
+        WebDriverWait(driver, 10).until(EC.url_to_be('https://peercode.net/profile'))
+        assert driver.current_url == 'https://peercode.net/profile', "Navigation to /profile failed"
 
     finally:
         driver.quit()

@@ -9,7 +9,7 @@ chrome_options.add_argument("--headless")
 
 def test_editor_solutions_panel_success():
     driver = webdriver.Chrome(options=chrome_options)
-    driver.get('http://peercode.net/login')
+    driver.get('https://peercode.net/login')
     wait = WebDriverWait(driver, 10)
     try:
         # Login
@@ -22,16 +22,16 @@ def test_editor_solutions_panel_success():
         login_button.click()
 
         # Wait for the next page to load after login
-        WebDriverWait(driver, 10).until(EC.url_to_be('http://peercode.net/dashboard'))
-        assert driver.current_url == 'http://peercode.net/dashboard', "Login failed"
+        WebDriverWait(driver, 10).until(EC.url_to_be('https://peercode.net/dashboard'))
+        assert driver.current_url == 'https://peercode.net/dashboard', "Login failed"
 
         # Find and click the 'Two Sum' element
         two_sum_element = wait.until(EC.element_to_be_clickable((By.XPATH, "//div[@class='title-div' and text()='Two Sum']")))
         two_sum_element.click()
 
         # Wait for redirection to /problem
-        WebDriverWait(driver, 10).until(EC.url_to_be('http://peercode.net/problem'))
-        assert driver.current_url == 'http://peercode.net/problem', "Navigation to /problem failed"
+        WebDriverWait(driver, 10).until(EC.url_to_be('https://peercode.net/problem'))
+        assert driver.current_url == 'https://peercode.net/problem', "Navigation to /problem failed"
 
         # Find and click on "Solutions" button
         solutions_button_element = wait.until(EC.element_to_be_clickable((By.XPATH, "//button[@id='problempage-full-width-tab-1']")))
@@ -43,7 +43,7 @@ def test_editor_solutions_panel_success():
 
 def test_editor_submissions_panel_success():
     driver = webdriver.Chrome(options=chrome_options)
-    driver.get('http://peercode.net/login')
+    driver.get('https://peercode.net/login')
     wait = WebDriverWait(driver, 10)
     try:
         # Login
@@ -56,16 +56,16 @@ def test_editor_submissions_panel_success():
         login_button.click()
 
         # Wait for the next page to load after login
-        WebDriverWait(driver, 10).until(EC.url_to_be('http://peercode.net/dashboard'))
-        assert driver.current_url == 'http://peercode.net/dashboard', "Login failed"
+        WebDriverWait(driver, 10).until(EC.url_to_be('https://peercode.net/dashboard'))
+        assert driver.current_url == 'https://peercode.net/dashboard', "Login failed"
 
         # Find and click the 'Two Sum' element
         two_sum_element = wait.until(EC.element_to_be_clickable((By.XPATH, "//div[@class='title-div' and text()='Two Sum']")))
         two_sum_element.click()
 
         # Wait for redirection to /problem
-        WebDriverWait(driver, 10).until(EC.url_to_be('http://peercode.net/problem'))
-        assert driver.current_url == 'http://peercode.net/problem', "Navigation to /problem failed"
+        WebDriverWait(driver, 10).until(EC.url_to_be('https://peercode.net/problem'))
+        assert driver.current_url == 'https://peercode.net/problem', "Navigation to /problem failed"
 
         # Find and click on "Submissions" button
         submissions_button_element = wait.until(EC.element_to_be_clickable((By.XPATH, "//button[@id='problempage-full-width-tab-2']")))

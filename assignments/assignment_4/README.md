@@ -16,8 +16,12 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 After cloning the project in your personal device, navigate the directory to ay2324s1-course-assessment-g33/assignments/assignment_4 using `cd` commands in the terminal.
 
-Within the project directory, create an environment file (.env.local). You can request the environment file containing our API secrets from our group over email, at woobt123@gmail.com.
+Within the project directory, create an environment file. You can request the environment file containing our API secrets from our group over email, at woobt123@gmail.com.
 This allows you to access MongoDB, Firebase, and AWS RDS servers.
+Ensure that the environment file is named as the following: docker-compose.env, and it shares the same project directory as the compose.yaml file.
+<br/>
+![image](https://github.com/CS3219-AY2324S1/ay2324s1-course-assessment-g33/assets/62021897/95172724-c47b-466d-8f5e-c2ba85da24ef)
+
 
 Before running the program, ensure that Docker (CLI and Docker Desktop) and docker compose is installed on your system.
 

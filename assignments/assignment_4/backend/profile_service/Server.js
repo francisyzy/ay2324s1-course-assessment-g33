@@ -56,8 +56,9 @@ app.post("/insert", (req, res) => {
         db.destroy();
         throw err;
       }
+      res.status(200).send("Successful Insert")
     } catch (err) {
-      res.status(500).json({ message: err.message });
+      res.status(400).send(err.message);
     }
   });
   db.end();
@@ -65,7 +66,6 @@ app.post("/insert", (req, res) => {
 
 app.post("/read", (req, res) => {
   let db = connectionRequest();
-
   let userObject = req.body.user;
   let stringQuery = callStoredProcQuery(
     "peerPrepAssignment.GetUserProfile",
@@ -78,10 +78,9 @@ app.post("/read", (req, res) => {
         db.destroy();
         throw err;
       }
-      console.log(dbres);
       res.status(200).send(dbres[0][0]);
     } catch (err) {
-      res.status(500).json({ message: err.message });
+      res.status(400).send(err.message);
     }
   });
   db.end();
@@ -104,15 +103,14 @@ app.post("/update", (req, res) => {
         db.destroy();
         throw err;
       }
-      console.log(res);
+      res.status(200).send("Successful Update")
     } catch (err) {
-      res.status(500).json({ message: err.message });
+      res.status(400).send(err.message);
     }
   });
 
   db.end();
 });
-
 app.post("/delete", (req, res) => {
   let db = connectionRequest();
   let userObject = req.body.user;
@@ -127,9 +125,9 @@ app.post("/delete", (req, res) => {
         db.destroy();
         throw err;
       }
-      console.log(res);
+      res.status(200).send("Successful Delete")
     } catch (err) {
-      res.status(500).json({ message: err.message });
+      res.status(400).send(err.message);
     }
   });
 

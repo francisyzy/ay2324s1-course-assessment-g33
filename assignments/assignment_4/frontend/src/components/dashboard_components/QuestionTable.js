@@ -64,6 +64,7 @@ export default function QuestionTable({
                     <div>
                       <UpdateQuestion
                         question={data}
+                        allQuestions={questions}
                         currQuestion={currQuestion}
                         onValChange={onValChange}
                         onCategoryValChange={onCategoryValChange}

@@ -87,7 +87,7 @@ def test_signup_failure_email_in_use():
 '''
 def test_signup_failure_password_mismatch():
     driver = webdriver.Chrome(options=chrome_options)
-    driver.get('http://peercode.net/signup')
+    driver.get('https://peercode.net/signup')
     wait = WebDriverWait(driver, 10)
 
     try:
@@ -113,15 +113,15 @@ def test_signup_failure_password_mismatch():
         assert snackbar.text == 'Password mismatched', "Snackbar Text mismatch"
 
         # Wait for the success message or redirect
-        WebDriverWait(driver, 10).until(EC.url_to_be('http://peercode.net/signup'))
+        WebDriverWait(driver, 10).until(EC.url_to_be('https://peercode.net/signup'))
 
-        assert driver.current_url == 'http://peercode.net/signup', "URL mismatch"
+        assert driver.current_url == 'https://peercode.net/signup', "URL mismatch"
     finally:
         driver.quit()
 
 def test_signup_failure_existing_user():
     driver = webdriver.Chrome(options=chrome_options)
-    driver.get('http://peercode.net/signup')
+    driver.get('https://peercode.net/signup')
     wait = WebDriverWait(driver, 10)
 
     try:
@@ -147,15 +147,15 @@ def test_signup_failure_existing_user():
         assert snackbar.text == 'Email is already in use', "Snackbar Text mismatch"
 
         # Wait for the success message or redirect
-        WebDriverWait(driver, 10).until(EC.url_to_be('http://peercode.net/signup'))
+        WebDriverWait(driver, 10).until(EC.url_to_be('https://peercode.net/signup'))
 
-        assert driver.current_url == 'http://peercode.net/signup', "URL mismatch"
+        assert driver.current_url == 'https://peercode.net/signup', "URL mismatch"
     finally:
         driver.quit()
 
 def test_signup_failure_insecure_pwd():
     driver = webdriver.Chrome(options=chrome_options)
-    driver.get('http://peercode.net/signup')
+    driver.get('https://peercode.net/signup')
     wait = WebDriverWait(driver, 10)
 
     try:
@@ -181,8 +181,8 @@ def test_signup_failure_insecure_pwd():
         assert snackbar.text == 'Password must have at least 1 number and 1 non-alphanumeric character', "Snackbar Text mismatch"
 
         # Wait for the success message or redirect
-        WebDriverWait(driver, 10).until(EC.url_to_be('http://peercode.net/signup'))
+        WebDriverWait(driver, 10).until(EC.url_to_be('https://peercode.net/signup'))
 
-        assert driver.current_url == 'http://peercode.net/signup', "URL mismatch"
+        assert driver.current_url == 'https://peercode.net/signup', "URL mismatch"
     finally:
         driver.quit()

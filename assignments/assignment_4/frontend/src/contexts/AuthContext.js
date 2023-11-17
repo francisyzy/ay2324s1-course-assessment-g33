@@ -50,6 +50,7 @@ export function AuthProvider({ children }) {
 
   const logout = async () => {
     await signOut(auth);
+    setIsAdmin(false);
   };
 
   const resetPassword = async (email) => {
