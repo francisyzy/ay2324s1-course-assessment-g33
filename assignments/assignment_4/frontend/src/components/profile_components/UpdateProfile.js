@@ -8,7 +8,7 @@ import {
   Form,
   Alert,
 } from "react-bootstrap";
-import { useAuth } from "../../../contexts/AuthContext";
+import { useAuth } from "../../contexts/AuthContext";
 import { Link } from "react-router-dom";
 
 import Axios from "axios";
