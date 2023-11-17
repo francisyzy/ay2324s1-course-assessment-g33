@@ -8,6 +8,8 @@ Key features include the ability to perform CRUD operations:
 - Updating questions and their details
 - Delete questions
 
+Styling with CSS and React-bootstrap has been used to make the application user-friendly.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Set-up
